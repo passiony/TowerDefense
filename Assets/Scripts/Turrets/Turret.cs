@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 /// <summary>
@@ -9,9 +10,10 @@ using UnityEngine;
 /// </summary>
 public class Turret : MonoBehaviour
 {
-    public IGun[] Levels;
+    public int[] prices = { 30, 20, 30 };
     public int level = 0;
-    
+    public IGun[] Levels;
+
     private void Start()
     {
         RefreshTurret();
@@ -23,10 +25,10 @@ public class Turret : MonoBehaviour
         {
             gun.gameObject.SetActive(false);
         }
-        
+
         Levels[level].gameObject.SetActive(true);
     }
-    
+
     public void Upgrade()
     {
         if (level < 2)
@@ -34,5 +36,36 @@ public class Turret : MonoBehaviour
             level++;
             RefreshTurret();
         }
+    }
+
+    public bool CanUpgrade()
+    {
+        return level < 2;
+    }
+    
+    public int GetUpgradePrice()
+    {
+        return prices[level + 1];
+    }
+
+    public int GetDestroyPrice()
+    {
+        return (int)(prices[level] / 2f);
+    }
+    
+    public void SetEnable(bool enable)
+    {
+        this.enabled = enable;
+        foreach (var gun in Levels)
+        {
+            gun.enabled = enable;
+        }
+
+        this.GetComponent<BoxCollider>().enabled = enable;
+    }
+
+    public void ShowUI()
+    {
+        transform.Find("TurretUI").gameObject.SetActive(true);
     }
 }

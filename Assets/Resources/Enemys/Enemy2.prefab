@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 9182484437643412075}
   m_Layer: 6
   m_Name: Enemy2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 3
+  Coin: 20
 --- !u!114 &9182484437643412075
 MonoBehaviour:
   m_ObjectHideFlags: 0

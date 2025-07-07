@@ -41,6 +41,11 @@ public class MachineGun : IGun
         {
             target = cols[0].gameObject;
         }
+        else
+        {
+            target = null;
+            fireTime = 0;
+        }
     }
 
     void AttackTarget()

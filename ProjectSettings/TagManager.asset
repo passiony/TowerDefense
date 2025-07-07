@@ -4,18 +4,19 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Map
   - Turret
+  - Enemy
+  - Box
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Plane
   - Water
   - UI
   - Enemy
   - Turret
-  - 
+  - Box
   - 
   - 
   - 
