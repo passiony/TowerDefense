@@ -9,13 +9,14 @@ public class WaveManager : MonoBehaviour
     public float delay;
     public float interval;
     public Transform bornPoint;
-    public Path path;
+    private Path path;
     public Wave[] waves;
 
     private int index;
 
     IEnumerator Start()
     {
+        path = FindObjectOfType<Path>();
         yield return new WaitForSeconds(delay);
         var wave = waves[index];
         StartCoroutine(SpawnWave(wave));

@@ -7,6 +7,7 @@ using UnityEngine;
 [Serializable]
 public class Wave
 {
+    public int Id;
     public GameObject enemy;
     public int enemyCount;
     public float interval;

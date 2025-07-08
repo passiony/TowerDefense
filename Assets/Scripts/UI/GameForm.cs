@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameForm : MonoBehaviour
 {
     public TextMeshProUGUI m_Coin;
+    public TextMeshProUGUI m_HP;
     public int CoinNum = 200;
     public Button[] turretButtons;
     
@@ -60,5 +61,10 @@ public class GameForm : MonoBehaviour
     {
         CoinNum -= coin;
         m_Coin.text = CoinNum.ToString();
+    }
+    
+    public void SetHP(int hp)
+    {
+        m_HP.text = hp.ToString();
     }
 }

@@ -44,11 +44,11 @@ public class InputManager : MonoBehaviour
                         var box = hit.collider.GetComponent<Box>();
                         if (box.IsOn == false)
                         {
-                            box.IsOn = true;
                             var cubeCenter = hit.collider.transform.position;
                             var position = cubeCenter + new Vector3(0, 0.1f, 0);
                             dragTurret.transform.position = position;
                             dragTurret.GetComponent<Turret>().SetEnable(true);
+                            dragTurret.GetComponent<Turret>().PlaceOn(box);
                             dragTurret = null;
                         }
                     }

@@ -13,7 +13,8 @@ public class Turret : MonoBehaviour
     public int[] prices = { 30, 20, 30 };
     public int level = 0;
     public IGun[] Levels;
-
+    public Box box { get; set; }
+    
     private void Start()
     {
         RefreshTurret();
@@ -66,6 +67,12 @@ public class Turret : MonoBehaviour
 
     public void ShowUI()
     {
-        transform.Find("TurretUI").gameObject.SetActive(true);
+        TurretUI.Instance.ShowUI(this);
+    }
+
+    public void PlaceOn(Box box)
+    {
+        this.box = box;
+        box.IsOn = true;
     }
 }

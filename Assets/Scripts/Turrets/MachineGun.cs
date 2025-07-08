@@ -19,9 +19,11 @@ public class MachineGun : IGun
 
     private GameObject target;
     private float fireTime;
-
+    private AudioSource m_AudioSource;
+    
     void Start()
     {
+        m_AudioSource = gameObject.GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -67,6 +69,7 @@ public class MachineGun : IGun
                     var hit = Instantiate(hitEffect, hitpoint);
                     hit.transform.localPosition = Vector3.zero;
                     target.GetComponent<Enemy>().OnDamage(bulletDamage);
+                    m_AudioSource.Play();
                     Destroy(hit, 2);
                 }
             }
