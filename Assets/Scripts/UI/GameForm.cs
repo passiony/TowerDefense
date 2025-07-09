@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class GameForm : MonoBehaviour
 {
+    public Button settingBtn;
+    public GameObject settingForm;
     public TextMeshProUGUI m_Coin;
     public TextMeshProUGUI m_HP;
     public int CoinNum = 200;
+    public TextMeshProUGUI m_WaveNum;
     public Button[] turretButtons;
     
     public static GameForm Instance;
@@ -20,6 +23,7 @@ public class GameForm : MonoBehaviour
     
     void Start()
     {
+        settingBtn.onClick.AddListener(OnSettingClick);
         m_Coin.text = CoinNum.ToString();
         for (int i = 0; i < turretButtons.Length; i++)
         {
@@ -30,6 +34,11 @@ public class GameForm : MonoBehaviour
                 OnTurrectClick(index);
             });
         }
+    }
+
+    private void OnSettingClick()
+    {
+        settingForm.SetActive(true);
     }
 
     /// <summary>
@@ -66,5 +75,10 @@ public class GameForm : MonoBehaviour
     public void SetHP(int hp)
     {
         m_HP.text = hp.ToString();
+    }
+
+    public void SetWaveNum(int wave,int totalWave)
+    {
+        m_WaveNum.text = $"{wave}/{totalWave}";
     }
 }

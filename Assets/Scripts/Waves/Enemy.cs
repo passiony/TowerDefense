@@ -25,8 +25,16 @@ public class Enemy : MonoBehaviour
         if (HP <= 0)
         {
             // gameObject.GetComponent<EnemyMove>().StopMove();
-            Destroy(gameObject, 1);
             GameForm.Instance.AddCoin(Coin);
+            OnDead();
         }
     }
+
+    public void OnDead()
+    {
+        HP = 0;
+        Destroy(gameObject, 0.2f);
+        WaveManager.Instance.CheckGameOver();
+    }
+    
 }
