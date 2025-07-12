@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 玩家基地
+/// </summary>
 public class Player : MonoBehaviour
 {
     public GameObject hitEffect;

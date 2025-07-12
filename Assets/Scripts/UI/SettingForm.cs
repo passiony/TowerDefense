@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// 设置页面
+/// </summary>
 public class SettingForm : MonoBehaviour
 {
     public Button resumeBtn;

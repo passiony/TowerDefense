@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// 启动界面
+/// </summary>
 public class LaunchForm : MonoBehaviour
 {
     public Button startBtn;

@@ -9,33 +9,14 @@ using UnityEngine;
 /// </summary>
 public class RocketGun : IGun
 {
-    public Transform gunHead;
-    public Transform[] firepoints;
     public GameObject bullet;
-
-    public float seekRange = 3;
-    public float fireRate = 1f;
     public float bulletSpeed = 2;
     public float bulletDamage = 1;
 
     private GameObject target;
     private float fireTime;
 
-    void Start()
-    {
-    }
-
-    /// <summary>
-    /// 1.扫描目标
-    /// 2.攻击目标
-    /// </summary>
-    void Update()
-    {
-        SeekEnemys();
-        AttackTarget();
-    }
-
-    void SeekEnemys()
+    protected override void SeekEnemys()
     {
         var cols = Physics.OverlapSphere(transform.position, seekRange, LayerMask.GetMask("Enemy"));
         if (cols.Length > 0)
@@ -44,7 +25,7 @@ public class RocketGun : IGun
         }
     }
 
-    void AttackTarget()
+    protected override void AttackTarget()
     {
         if (target != null)
         {

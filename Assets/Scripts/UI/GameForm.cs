@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 游戏主页面
+/// </summary>
 public class GameForm : MonoBehaviour
 {
     public Button settingBtn;
     public GameObject settingForm;
     public TextMeshProUGUI m_Coin;
     public TextMeshProUGUI m_HP;
-    public int CoinNum = 200;
     public TextMeshProUGUI m_WaveNum;
     public Button[] turretButtons;
     
@@ -24,7 +27,7 @@ public class GameForm : MonoBehaviour
     void Start()
     {
         settingBtn.onClick.AddListener(OnSettingClick);
-        m_Coin.text = CoinNum.ToString();
+        m_Coin.text = GameData.CoinNum.ToString();
         for (int i = 0; i < turretButtons.Length; i++)
         {
             int index = i;
@@ -57,19 +60,19 @@ public class GameForm : MonoBehaviour
 
     public bool CanBuy(int coin)
     {
-        return CoinNum >= coin;
+        return GameData.CoinNum >= coin;
     }
     
     public void AddCoin(int coin)
     {
-        CoinNum += coin;
-        m_Coin.text = CoinNum.ToString();
+        GameData.CoinNum += coin;
+        m_Coin.text = GameData.CoinNum.ToString();
     }
     
     public void SubCoin(int coin)
     {
-        CoinNum -= coin;
-        m_Coin.text = CoinNum.ToString();
+        GameData.CoinNum -= coin;
+        m_Coin.text = GameData.CoinNum.ToString();
     }
     
     public void SetHP(int hp)

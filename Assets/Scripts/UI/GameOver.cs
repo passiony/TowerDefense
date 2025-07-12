@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// 游戏结束
+/// </summary>
 public class GameOver : MonoBehaviour
 {
     public TextMeshProUGUI m_Title;

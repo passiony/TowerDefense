@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// 机枪Gun
@@ -9,34 +10,19 @@ using UnityEngine;
 /// </summary>
 public class MachineGun : IGun
 {
-    public Transform gunHead;
-    public Transform[] firepoints;
     public GameObject hitEffect;
-
-    public float seekRange = 3;
-    public float fireRate = 1f;
-    public float bulletDamage = 1;
+    public float hitDamage = 1;
 
     private GameObject target;
     private float fireTime;
     private AudioSource m_AudioSource;
-    
+
     void Start()
     {
         m_AudioSource = gameObject.GetComponent<AudioSource>();
     }
 
-    /// <summary>
-    /// 1.扫描目标
-    /// 2.攻击目标
-    /// </summary>
-    void Update()
-    {
-        SeekEnemys();
-        AttackTarget();
-    }
-
-    void SeekEnemys()
+    protected override void SeekEnemys()
     {
         var cols = Physics.OverlapSphere(transform.position, seekRange, LayerMask.GetMask("Enemy"));
         if (cols.Length > 0)
@@ -50,7 +36,7 @@ public class MachineGun : IGun
         }
     }
 
-    void AttackTarget()
+    protected override void AttackTarget()
     {
         if (target != null)
         {
@@ -60,7 +46,7 @@ public class MachineGun : IGun
 
             //子弹的发射间隔
             fireTime += Time.deltaTime;
-            if (fireTime > fireRate)//1f
+            if (fireTime > fireRate) //1f
             {
                 fireTime = 0;
                 foreach (var firepoint in firepoints)
@@ -68,7 +54,7 @@ public class MachineGun : IGun
                     var hitpoint = target.GetComponent<EnemyMove>().hitPoint;
                     var hit = Instantiate(hitEffect, hitpoint);
                     hit.transform.localPosition = Vector3.zero;
-                    target.GetComponent<Enemy>().OnDamage(bulletDamage);
+                    target.GetComponent<Enemy>().OnDamage(hitDamage);
                     m_AudioSource.Play();
                     Destroy(hit, 2);
                 }

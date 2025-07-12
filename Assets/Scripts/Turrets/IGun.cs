@@ -9,7 +9,26 @@ using UnityEngine;
 ///     RocketGun
 ///     LaserGun
 /// </summary>
-public class IGun : MonoBehaviour
+public abstract class IGun : MonoBehaviour
 {
+    public Transform gunHead;
+    public Transform[] firepoints;
+
+    public float seekRange = 3;
+    public float fireRate = 1f;
     
+    /// <summary>
+    /// 1.扫描目标
+    /// 2.攻击目标
+    /// </summary>
+    public virtual void Update()
+    {
+        SeekEnemys();
+        AttackTarget();
+    }
+
+    protected virtual void SeekEnemys(){}
+    
+    protected virtual void AttackTarget(){}
+
 }
